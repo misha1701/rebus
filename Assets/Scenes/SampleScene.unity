@@ -433,53 +433,6 @@ MonoBehaviour:
   - {fileID: 1529645293}
   - {fileID: 143779044}
   - {fileID: 858901689}
-  voprosotvet:
-  - Vopros: "\u043A\u0430\u043A\u043E\u0439 \u043D\u043E\u043C\u0435\u0440 \u0432\u043E\u043F\u0440\u043E\u0441\u0430?                                                     
-      \u0432\u043E\u043F\u0440\u043E\u0441 1"
-    Otvet:
-    - 1
-    - 2
-    - 3
-    - 4
-    PravelOtvet: 1
-  - Vopros: "\u043A\u0430\u043A\u043E\u0439 \u043D\u043E\u043C\u0435\u0440 \u0432\u043E\u043F\u0440\u043E\u0441\u0430?                                                     
-      \u0432\u043E\u043F\u0440\u043E\u0441 2"
-    Otvet:
-    - 1
-    - 2
-    - 3
-    - 4
-    PravelOtvet: 2
-  - Vopros: "\u043A\u0430\u043A\u043E\u0439 \u043D\u043E\u043C\u0435\u0440 \u0432\u043E\u043F\u0440\u043E\u0441\u0430?                                                     
-      \u0432\u043E\u043F\u0440\u043E\u0441 3"
-    Otvet:
-    - 1
-    - 2
-    - 3
-    - 4
-    PravelOtvet: 3
-  - Vopros: "\u043A\u0430\u043A\u043E\u0439 \u043D\u043E\u043C\u0435\u0440 \u0432\u043E\u043F\u0440\u043E\u0441\u0430?                                                     
-      \u0432\u043E\u043F\u0440\u043E\u0441 4"
-    Otvet:
-    - 1
-    - 2
-    - 3
-    - 4
-    PravelOtvet: 4
-  - Vopros: "\u0432\u043E\u043F\u0440\u043E\u04415"
-    Otvet:
-    - 2
-    - 3
-    - 4
-    - 5
-    PravelOtvet: 2
-  - Vopros: "\u0432\u043E\u043F\u0440\u043E\u04416"
-    Otvet:
-    - 2
-    - 3
-    - 4
-    - 5
-    PravelOtvet: 2
   audioSource:
   - {fileID: 626241693}
   - {fileID: 1951227638}
@@ -591,6 +544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d93c8281c36fb1f44804654e841f2217, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiManager: {fileID: 231663992}
   buttonOn: {fileID: 938320333}
   buttonOff: {fileID: 2042101556}
 --- !u!1 &481537902
@@ -2518,22 +2472,6 @@ PrefabInstance:
     - target: {fileID: 3809953424592621549, guid: 299a5786c032ca74ea25df108d9aed6a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5522930121643595521, guid: 299a5786c032ca74ea25df108d9aed6a, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5522930121643595521, guid: 299a5786c032ca74ea25df108d9aed6a, type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5522930121643595521, guid: 299a5786c032ca74ea25df108d9aed6a, type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5522930121643595521, guid: 299a5786c032ca74ea25df108d9aed6a, type: 3}
-      propertyPath: m_Color.r
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 299a5786c032ca74ea25df108d9aed6a, type: 3}

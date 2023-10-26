@@ -10,63 +10,82 @@ using UnityEngine.UI;
 
 public class UiManager : MonoBehaviour
 {
-    [SerializeField] private TMP_InputField Vopros;
-    [SerializeField] private Button[] buttons;
-    [SerializeField] private TMP_InputField[] texts;
-    [SerializeField] private VoprosOtvet[] voprosotvet;
-    [SerializeField] private AudioSource[] audioSource;
-   
-     int  NomerVopros = -1;
+    [SerializeField] private TMP_InputField Vopros;//  вопрос
+    [SerializeField] private Button[] buttons;//  кнопки 
+    [SerializeField] private TMP_InputField[] texts;// не совсем понимаю  texts
+    [SerializeField] private AudioSource[] audioSource;// аудио
+
+    private int NomerVopros = -1;
+    int vopsosLength = 5;
+
+    public int GetNomerVopros()
+    {
+        return NomerVopros;
+    }
 
     private void PokozSledVopros()
     {
-        if (NomerVopros < voprosotvet.Length)
+        if (NomerVopros < vopsosLength)
         {
             NomerVopros++;
 
             ShowVoprosOtvet();
             VorvratRazmer();
         }
-        
-        
+
+
     }
 
     private void PokozPredVopros()
     {
-        if ( NomerVopros > 0)
+        if (NomerVopros > 0)
         {
-             NomerVopros--;
+            NomerVopros--;
 
             ShowVoprosOtvet();
             VorvratRazmer();
         }
-        
-            
-             
+
+
+
     }
 
     private void ShowVoprosOtvet()
     {
-        Vopros.text = voprosotvet[NomerVopros].Vopros;
+        // Vopros.text = voprosotvet[NomerVopros].Vopros;
+        List<VoprosOtvet> list = Save.classVoprosOtvet.List;
 
-        for (int i = 0; i < buttons.Length; i++)
+        if (list.Count <= NomerVopros)
         {
-            TMP_InputField text = texts[i];
-            text.text = voprosotvet[NomerVopros].Otvet[i];
+            return;
+        }
+
+        GameObject[] rightAnswers = GameObject.FindGameObjectsWithTag("RightAnswer");
+        for (int i = 0; i < rightAnswers.Length; i++)
+        {
+            Toggle toggle = rightAnswers[i].GetComponentInChildren<Toggle>();
+            toggle.isOn = Save.classVoprosOtvet.List[NomerVopros].PravOtvetIndex == i;
+        }
+
+        Vopros.text = list[NomerVopros].Vopros;
+
+        for (int i = 0; i < texts.Length; i++)
+        {
+            texts[i].text = list[NomerVopros].Otvet[i];
         }
     }
 
     private void Start()
     {
         PokozSledVopros();
-        
+
         for (int i = 0; i < buttons.Length; i++)
         {
-             int index = i; 
-              buttons[index].onClick.AddListener(() => OntBatoonClic(index));
+            int index = i;
+            buttons[index].onClick.AddListener(() => OntBatoonClic(index));
         }
         // AddListener - включение на ивент, включение метода после клика
-       
+
 
     }
 
@@ -75,7 +94,7 @@ public class UiManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             PokozSledVopros();
-            
+
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
@@ -85,8 +104,7 @@ public class UiManager : MonoBehaviour
 
     private void OntBatoonClic(int index) // index отвечает за нажатую кнопку
     {
-        
-        int pravelknopka = voprosotvet[NomerVopros].PolucitPravelOtvet();
+        int pravelknopka = Save.classVoprosOtvet.List[NomerVopros].PravOtvetIndex;
         if (pravelknopka == index)
         {
             if (buttons[pravelknopka].transform.parent.localScale.x < 1.01f)
@@ -98,14 +116,14 @@ public class UiManager : MonoBehaviour
             AudioWin();
         }
         else AudioNot();
-    } 
-    
+    }
+
 
     private void VorvratRazmer()
     {
-       for (int i = 0; i < buttons.Length; i++)
+        for (int i = 0; i < buttons.Length; i++)
         {
-            buttons[i].GetComponent<Transform>().localScale = new Vector3(1,1,1);
+            buttons[i].GetComponent<Transform>().localScale = new Vector3(1, 1, 1);
 
         }
 
