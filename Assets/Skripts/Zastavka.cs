@@ -23,7 +23,7 @@ public class Zastavka : MonoBehaviour
         // если(Ввод.НажатаКлавиша(НомерКлавиши.ЛеваяСтрелка))
         // if (Input.GetKeyDown(KeyCode.LeftArrow))
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Return))
         {
             ZastavkaFolse();
 

@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,19 +7,22 @@ public class SettingsOnOFF : MonoBehaviour
 
 {
     [SerializeField] UiManager uiManager;
-    [SerializeField] Button buttonOn;
-    [SerializeField] Button buttonOff;
+    [SerializeField] Image Izmenenia;
 
+    private Toggle[] toggles;
+    private GameObject[] gameObjects;
+    private GameObject[] Otvet;
+    private TMP_InputField[] inputFields;
+    private bool IsIzmenenia;
 
     private void Start()
     {
-        buttonOn.gameObject.SetActive(false);
-        buttonOff.gameObject.SetActive(true);
+        Izmenenia.gameObject.SetActive(false);
 
-        GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("NevidButten");
+        gameObjects = GameObject.FindGameObjectsWithTag("NevidButten");
 
-        GameObject[] Otvet = GameObject.FindGameObjectsWithTag("Otvet");
-        TMP_InputField[] inputFields = new TMP_InputField[Otvet.Length];
+        Otvet = GameObject.FindGameObjectsWithTag("Otvet");
+        inputFields = new TMP_InputField[Otvet.Length];
         for (int i = 0; i < Otvet.Length; i++)
         {
             inputFields[i] = Otvet[i].GetComponentInChildren<TMP_InputField>();
@@ -29,59 +30,70 @@ public class SettingsOnOFF : MonoBehaviour
 
 
         GameObject[] rightAnswers = GameObject.FindGameObjectsWithTag("RightAnswer");//RightAnswer перевод правильный ответ
-        Toggle[] toggles = new Toggle[rightAnswers.Length];
+        toggles = new Toggle[rightAnswers.Length];
         for (int i = 0; i < rightAnswers.Length; i++)
         {
             toggles[i] = rightAnswers[i].GetComponentInChildren<Toggle>();
             toggles[i].gameObject.SetActive(false);
         }
+    }
 
-
-        buttonOn.onClick.AddListener(
-            () =>
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (IsIzmenenia)
             {
-                for (int i = 0; i < gameObjects.Length; i++)
-                {
-                    gameObjects[i].SetActive(false);
-                }
-                for (int i = 0;i < toggles.Length; i++)
-                {
-                    toggles[i].gameObject.SetActive(true);
-                }
-                buttonOn.gameObject.SetActive(false);
-                buttonOff.gameObject.SetActive(true);
+                NoRedakt(gameObjects, Otvet, inputFields, toggles);
             }
-        );
-
-        buttonOff.onClick.AddListener(
-            () =>
+            else
             {
-                for (int i = 0; i < gameObjects.Length; i++)
-                {
-                    gameObjects[i].SetActive(true);
-                }
-                for (int i = 0; i < toggles.Length; i++)
-                {
-                    toggles[i].gameObject.SetActive(false);
-                }
-
-
-                for (int i = 0; i < toggles.Length; i++)
-                {
-                    if (toggles[i].isOn) // isOn смотрит включён ли  
-                    {
-                        Save.classVoprosOtvet.List[uiManager.GetNomerVopros()].PravOtvetIndex = i;
-                    }
-                }
-
-                for (int i = 0; i < Otvet.Length; i++)
-                {
-                    Save.SaveText(inputFields[i].text, uiManager.GetNomerVopros(), i);
-                }
-
-                buttonOff.gameObject.SetActive(false);
-                buttonOn.gameObject.SetActive(true);
+                VklRedakt(gameObjects, toggles);
             }
-        );
+
+            IsIzmenenia = !IsIzmenenia;
+        }
+    }
+
+    private void NoRedakt(GameObject[] gameObjects, GameObject[] Otvet, TMP_InputField[] inputFields, Toggle[] toggles)
+    {
+        for (int i = 0; i < gameObjects.Length; i++)
+        {
+            gameObjects[i].SetActive(true);
+        }
+        for (int i = 0; i < toggles.Length; i++)
+        {
+            toggles[i].gameObject.SetActive(false);
+        }
+
+
+        for (int i = 0; i < toggles.Length; i++)
+        {
+            if (toggles[i].isOn) // isOn смотрит включён ли  
+            {
+                Save.classVoprosOtvet.List[uiManager.GetNomerVopros()].PravOtvetIndex = i;
+            }
+        }
+
+        for (int i = 0; i < Otvet.Length; i++)
+        {
+            Save.SaveText(inputFields[i].text, uiManager.GetNomerVopros(), i);
+        }
+
+        Izmenenia.gameObject.SetActive(false);
+    }
+
+    private void VklRedakt(GameObject[] gameObjects, Toggle[] toggles)
+    {
+        for (int i = 0; i < gameObjects.Length; i++)
+        {
+            gameObjects[i].SetActive(false);
+        }
+        for (int i = 0; i < toggles.Length; i++)
+        {
+            toggles[i].gameObject.SetActive(true);
+        }
+
+        Izmenenia.gameObject.SetActive(true);
     }
 }
