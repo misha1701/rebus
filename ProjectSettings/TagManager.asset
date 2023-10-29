@@ -6,6 +6,7 @@ TagManager:
   tags:
   - NevidButten
   - Otvet
+  - RightAnswer
   layers:
   - Default
   - TransparentFX

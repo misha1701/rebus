@@ -12,7 +12,7 @@ public class UiManager : MonoBehaviour
 {
     [SerializeField] private TMP_InputField Vopros;//  вопрос
     [SerializeField] private Button[] buttons;//  кнопки 
-    [SerializeField] private TMP_InputField[] texts;// не совсем понимаю  texts
+    [SerializeField] private TMP_InputField[] texts;// текст
     [SerializeField] private AudioSource[] audioSource;// аудио
 
     private int NomerVopros = -1;
