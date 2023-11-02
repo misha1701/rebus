@@ -9,6 +9,7 @@ public class SettingsOnOFF : MonoBehaviour
 {
     [SerializeField] UiManager uiManager;
     [SerializeField] Image Izmenenia;
+    [SerializeField] TMP_InputField Vopros;
 
     private Toggle[] toggles;
     private GameObject[] gameObjects;
@@ -18,6 +19,7 @@ public class SettingsOnOFF : MonoBehaviour
 
     private void Start()
     {
+        Vopros.readOnly = true;
         Izmenenia.gameObject.SetActive(false);
 
         gameObjects = GameObject.FindGameObjectsWithTag("NevidButten");
@@ -78,15 +80,20 @@ public class SettingsOnOFF : MonoBehaviour
         SaveMetod(Otvet, inputFields, toggles);
 
         Izmenenia.gameObject.SetActive(false);
+        Vopros.readOnly = true;
     }
 
     private void SaveMetod(GameObject[] Otvet, TMP_InputField[] inputFields, Toggle[] toggles)
     {
+        Save.classVoprosOtvet.ExtendList(uiManager.GetNomerVopros());
+
+
+        Save.classVoprosOtvet.List[uiManager.GetNomerVopros()].Vopros = Vopros.text;
+
         for (int i = 0; i < toggles.Length; i++)
         {
             if (toggles[i].isOn) // isOn смотрит включён ли  
             {
-                Save.classVoprosOtvet.ExtendList(uiManager.GetNomerVopros());
                 Save.classVoprosOtvet.List[uiManager.GetNomerVopros()].PravOtvetIndex = i;
             }
         }
@@ -109,5 +116,7 @@ public class SettingsOnOFF : MonoBehaviour
         }
 
         Izmenenia.gameObject.SetActive(true);
+        // только для чтения - read only
+        Vopros.readOnly = false;
     }
 }

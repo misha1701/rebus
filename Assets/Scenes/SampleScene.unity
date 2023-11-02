@@ -450,6 +450,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiManager: {fileID: 231663992}
   Izmenenia: {fileID: 938320334}
+  Vopros: {fileID: 1262599860}
+  IsIzmenenia: 0
 --- !u!114 &231663995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1868,7 +1870,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc89520b7b43ba54aaa38031ccc06eed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  needToReset: 1
+  needToReset: 0
 --- !u!4 &1347073533
 Transform:
   m_ObjectHideFlags: 0
