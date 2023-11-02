@@ -1,10 +1,5 @@
-using JetBrains.Annotations;
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using TMPro;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,7 +11,7 @@ public class UiManager : MonoBehaviour
     [SerializeField] private AudioSource[] audioSource;// аудио
 
     private int NomerVopros = -1;
-    int vopsosLength = 5;
+    private SettingsOnOFF settingsOnOFF;
 
     public int GetNomerVopros()
     {
@@ -25,14 +20,18 @@ public class UiManager : MonoBehaviour
 
     private void PokozSledVopros()
     {
-        if (NomerVopros < vopsosLength)
+        // если настройки включены, то проверка не нужна
+        // иначе, провер€ем, номер вопроса + 1 будет меньше, чем длина списка
+
+        // || - или
+        // && - и
+        if (settingsOnOFF.IsIzmenenia || (NomerVopros < Save.classVoprosOtvet.List.Count))
         {
             NomerVopros++;
 
             ShowVoprosOtvet();
             VorvratRazmer();
         }
-
 
     }
 
@@ -77,6 +76,10 @@ public class UiManager : MonoBehaviour
 
     private void Start()
     {
+        // найтиќбьект—Ќужными“ипом<Ќастройки¬ключены¬ыключены>
+        settingsOnOFF = FindObjectOfType<SettingsOnOFF>();
+
+
         PokozSledVopros();
 
         for (int i = 0; i < buttons.Length; i++)
@@ -86,24 +89,39 @@ public class UiManager : MonoBehaviour
         }
         // AddListener - включение на ивент, включение метода после клика
 
-
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
+            // если включены настройки, то сохранить изменени€
+            if (settingsOnOFF.IsIzmenenia)
+            {
+                settingsOnOFF.SaveMetod();
+            }
             PokozSledVopros();
 
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
+
+            // если включены настройки, то сохранить изменени€
+            if (settingsOnOFF.IsIzmenenia)
+            {
+                settingsOnOFF.SaveMetod();
+            }
             PokozPredVopros();
         }
     }
 
     private void OntBatoonClic(int index) // index отвечает за нажатую кнопку
     {
+        List<VoprosOtvet> list = Save.classVoprosOtvet.List;
+        if (list.Count <= NomerVopros)
+        {
+            return;
+        }
         int pravelknopka = Save.classVoprosOtvet.List[NomerVopros].PravOtvetIndex;
         if (pravelknopka == index)
         {

@@ -1,21 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 
-[Serializable] 
+[Serializable]
 public class ClassVoprosOtvet
 {
     public List<VoprosOtvet> List;
-    public int Len;
 
     public ClassVoprosOtvet()
     {
         List = new List<VoprosOtvet>();
-        Len = 0;
     }
 
-    public void Add(VoprosOtvet voprosOtvet)
+    /// <summary>
+    /// расширяет список 
+    /// </summary>
+    public void ExtendList(int index)
     {
-        List.Add(voprosOtvet);
-        Len++;
+        for (int i = List.Count; i <= index; i++)
+        {
+            List.Add(new VoprosOtvet());
+        }
     }
 }

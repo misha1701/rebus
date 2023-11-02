@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
@@ -13,7 +14,7 @@ public class SettingsOnOFF : MonoBehaviour
     private GameObject[] gameObjects;
     private GameObject[] Otvet;
     private TMP_InputField[] inputFields;
-    private bool IsIzmenenia;
+    public bool IsIzmenenia;
 
     private void Start()
     {
@@ -40,7 +41,7 @@ public class SettingsOnOFF : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.F1))
         {
             if (IsIzmenenia)
             {
@@ -55,6 +56,14 @@ public class SettingsOnOFF : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// сохранить результат редактирования
+    /// </summary>
+    public void SaveMetod()
+    {
+        SaveMetod(Otvet, inputFields, toggles);
+    }
+
     private void NoRedakt(GameObject[] gameObjects, GameObject[] Otvet, TMP_InputField[] inputFields, Toggle[] toggles)
     {
         for (int i = 0; i < gameObjects.Length; i++)
@@ -66,11 +75,18 @@ public class SettingsOnOFF : MonoBehaviour
             toggles[i].gameObject.SetActive(false);
         }
 
+        SaveMetod(Otvet, inputFields, toggles);
 
+        Izmenenia.gameObject.SetActive(false);
+    }
+
+    private void SaveMetod(GameObject[] Otvet, TMP_InputField[] inputFields, Toggle[] toggles)
+    {
         for (int i = 0; i < toggles.Length; i++)
         {
             if (toggles[i].isOn) // isOn смотрит включён ли  
             {
+                Save.classVoprosOtvet.ExtendList(uiManager.GetNomerVopros());
                 Save.classVoprosOtvet.List[uiManager.GetNomerVopros()].PravOtvetIndex = i;
             }
         }
@@ -79,8 +95,6 @@ public class SettingsOnOFF : MonoBehaviour
         {
             Save.SaveText(inputFields[i].text, uiManager.GetNomerVopros(), i);
         }
-
-        Izmenenia.gameObject.SetActive(false);
     }
 
     private void VklRedakt(GameObject[] gameObjects, Toggle[] toggles)

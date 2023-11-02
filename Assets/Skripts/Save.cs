@@ -25,19 +25,6 @@ public static class Save
 
     public static void SaveText(string text, int NomerVopros, int NomerButten)
     {
-        // из номера вопроса вычитаем длину листа
-        // 2 - list count, 5 - nomerVopros
-        // delta = 5 - 2 = 3
-        int delta = NomerVopros - classVoprosOtvet.List.Count;
-        for (int i = 0; i <= delta; i++)
-        {
-            classVoprosOtvet.Add(new VoprosOtvet());
-
-
-            classVoprosOtvet.List[^1].Otvet = new string[4];
-            // classVoprosOtvet.List[classVoprosOtvet.List.Count - 1] обращение к последниму элименту массива строка 27
-        }
-
         classVoprosOtvet.List[NomerVopros].Otvet[NomerButten] = text;
         PlayerPrefs.SetString("state", JsonUtility.ToJson(classVoprosOtvet));//ToJson формат переведения класса в текстовое состояние
     }
