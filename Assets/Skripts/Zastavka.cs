@@ -28,7 +28,7 @@ public class Zastavka : MonoBehaviour
             ZastavkaFolse();
 
         }
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             ZastavkaTrue();
         }

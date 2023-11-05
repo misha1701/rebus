@@ -25,6 +25,7 @@ public class UiManager : MonoBehaviour
 
         // || - или
         // && - и
+        
         if (settingsOnOFF.IsIzmenenia || (NomerVopros < Save.classVoprosOtvet.List.Count))
         {
             NomerVopros++;
@@ -101,6 +102,7 @@ public class UiManager : MonoBehaviour
                 settingsOnOFF.SaveMetod();
             }
             PokozSledVopros();
+            
 
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow))
@@ -112,6 +114,7 @@ public class UiManager : MonoBehaviour
                 settingsOnOFF.SaveMetod();
             }
             PokozPredVopros();
+            VorvratRazmer();
         }
     }
 
@@ -141,7 +144,8 @@ public class UiManager : MonoBehaviour
     {
         for (int i = 0; i < buttons.Length; i++)
         {
-            buttons[i].GetComponent<Transform>().localScale = new Vector3(1, 1, 1);
+            // кнопка под индексом (номером) i.трансформ.родитель.локальныйРазмер = новый Вектор3(1, 1, 1);
+            buttons[i].GetComponent<Transform>().parent.localScale = new Vector3(1, 1, 1);
 
         }
 
