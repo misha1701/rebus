@@ -1,0 +1,64 @@
+{
+    "List": [
+        {
+            "Vopros": "это первый вопрос попробуй дать на него верный ответ",
+            "Otvet": [
+                "прикол",
+                "нет верный этот",
+                "ответ 3",
+                "ответ 4"
+            ],
+            "PravOtvetIndex": 2
+        },
+        {
+            "Vopros": "",
+            "Otvet": [
+                "sad",
+                "2",
+                "b,mnb",
+                "b,mnb"
+            ],
+            "PravOtvetIndex": 3
+        },
+        {
+            "Vopros": "",
+            "Otvet": [
+                "sad",
+                "g3dsg",
+                "b,mnb",
+                "b,mnb"
+            ],
+            "PravOtvetIndex": 3
+        },
+        {
+            "Vopros": "",
+            "Otvet": [
+                "sad",
+                "gdsg",
+                "b,mnb",
+                "b,mnb"
+            ],
+            "PravOtvetIndex": 3
+        },
+        {
+            "Vopros": "",
+            "Otvet": [
+                "sad",
+                "gdsg",
+                "b,mnb",
+                "b,mnb"
+            ],
+            "PravOtvetIndex": 3
+        },
+        {
+            "Vopros": "",
+            "Otvet": [
+                "sad",
+                "gdsg",
+                "b,mnb",
+                "b,mnb"
+            ],
+            "PravOtvetIndex": 3
+        }
+    ]
+}

@@ -2655,6 +2655,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1010388824}
     m_Modifications:
+    - target: {fileID: 3355094704132688016, guid: 299a5786c032ca74ea25df108d9aed6a, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: f3bd12a27b196474a9b9e5ab8462a256, type: 2}
+    - target: {fileID: 3355094704132688016, guid: 299a5786c032ca74ea25df108d9aed6a, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 4123965154975452619, guid: f3bd12a27b196474a9b9e5ab8462a256, type: 2}
     - target: {fileID: 3809953424592621545, guid: 299a5786c032ca74ea25df108d9aed6a, type: 3}
       propertyPath: m_Name
       value: 'Button '
@@ -2743,5 +2751,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4166151275257993776, guid: 299a5786c032ca74ea25df108d9aed6a, type: 3}
+      propertyPath: m_GlobalFontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: f3bd12a27b196474a9b9e5ab8462a256, type: 2}
+    - target: {fileID: 7493719816647579471, guid: 299a5786c032ca74ea25df108d9aed6a, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: f3bd12a27b196474a9b9e5ab8462a256, type: 2}
+    - target: {fileID: 7493719816647579471, guid: 299a5786c032ca74ea25df108d9aed6a, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 4123965154975452619, guid: f3bd12a27b196474a9b9e5ab8462a256, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 299a5786c032ca74ea25df108d9aed6a, type: 3}

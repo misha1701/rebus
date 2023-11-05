@@ -1,21 +1,27 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using Unity.VisualScripting;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 public static class Save
 {
     public static ClassVoprosOtvet classVoprosOtvet;
 
+    private static string FileName = "state.json";
+
     static Save()
     {
         classVoprosOtvet = new ClassVoprosOtvet();
-        if (PlayerPrefs.HasKey("state") == false)//если у нас нету ключа 
+
+        if (File.Exists(FileName) == false)//если у нас нету ключа 
         // if (!PlayerPrefs.HasKey("state"))
         {
             //сохраняем дефолтный ClassVoprosOtvet
-            PlayerPrefs.SetString("state", JsonUtility.ToJson(classVoprosOtvet));
+            File.WriteAllText(FileName, JsonUtility.ToJson(classVoprosOtvet, true));
+            
         }
         else
         {
@@ -26,14 +32,16 @@ public static class Save
     public static void SaveText(string text, int NomerVopros, int NomerButten)
     {
         classVoprosOtvet.List[NomerVopros].Otvet[NomerButten] = text;
-        PlayerPrefs.SetString("state", JsonUtility.ToJson(classVoprosOtvet));//ToJson формат переведения класса в текстовое состояние
+        File.WriteAllText(FileName, JsonUtility.ToJson(classVoprosOtvet, true));
+       // PlayerPrefs.SetString(json, JsonUtility.ToJson(classVoprosOtvet));//ToJson формат переведения класса в текстовое состояние
     }
 
     private static ClassVoprosOtvet GetClassVoprosOtvet()
     {
-        string json = PlayerPrefs.GetString("state");
+        string json = File.ReadAllText(FileName);
         // cvo - Class Vopros Otvet
         ClassVoprosOtvet cvo = JsonUtility.FromJson<ClassVoprosOtvet>(json);//  JsonUnitilite.FromJson| возвращаем обратно из страки значения 
         return cvo;
     }
 }
+ 
