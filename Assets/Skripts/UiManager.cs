@@ -12,6 +12,7 @@ public class UiManager : MonoBehaviour
 
     private int NomerVopros = -1;
     private SettingsOnOFF settingsOnOFF;
+    private List<int> _yvelichinoLi;
 
     public int GetNomerVopros()
     {
@@ -77,6 +78,7 @@ public class UiManager : MonoBehaviour
 
     private void Start()
     {
+        _yvelichinoLi = new List<int>();
         // найтиќбьект—Ќужными“ипом<Ќастройки¬ключены¬ыключены>
         settingsOnOFF = FindObjectOfType<SettingsOnOFF>();
 
@@ -130,7 +132,11 @@ public class UiManager : MonoBehaviour
         {
             if (buttons[pravelknopka].transform.parent.localScale.x < 1.01f)
             {
-                buttons[pravelknopka].transform.parent.localScale = buttons[pravelknopka].transform.parent.localScale + new Vector3(0.1f, 0.1f, 0.1f);
+                _yvelichinoLi.Add(pravelknopka);
+                Anime(pravelknopka).SetTrigger("ButtenClic");
+
+
+
                 // buttons[pravelknopka].transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
                 // .parent изменение родительского объекта
             }
@@ -139,17 +145,17 @@ public class UiManager : MonoBehaviour
         else AudioNot();
     }
 
+    private Animator Anime(int pravelknopka)
+    {
+        return buttons[pravelknopka].transform.parent.GetComponent<Animator>();
+    }
 
     private void VorvratRazmer()
     {
-        for (int i = 0; i < buttons.Length; i++)
+        foreach (var item in _yvelichinoLi)
         {
-            // кнопка под индексом (номером) i.трансформ.родитель.локальный–азмер = новый ¬ектор3(1, 1, 1);
-            buttons[i].GetComponent<Transform>().parent.localScale = new Vector3(1, 1, 1);
-
+            Anime(item).SetTrigger("Vozvrat");
         }
-
-
     }
     private void AudioWin()
     {
