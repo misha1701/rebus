@@ -65,7 +65,7 @@ public class UiManager : MonoBehaviour
         for (int i = 0; i < rightAnswers.Length; i++)
         {
             Toggle toggle = rightAnswers[i].GetComponentInChildren<Toggle>();
-            toggle.isOn = Save.classVoprosOtvet.List[NomerVopros].PravOtvetIndex == i;
+            toggle.isOn = Save.classVoprosOtvet.List[NomerVopros].PravOtvetIndex.Contains(i);
         }
 
         Vopros.text = list[NomerVopros].Vopros;
@@ -127,13 +127,13 @@ public class UiManager : MonoBehaviour
         {
             return;
         }
-        int pravelknopka = Save.classVoprosOtvet.List[NomerVopros].PravOtvetIndex;
-        if (pravelknopka == index)
+        
+        if (Save.classVoprosOtvet.List[NomerVopros].PravOtvetIndex.Contains(index))
         {
-            if (buttons[pravelknopka].transform.parent.localScale.x < 1.01f)
+            if (buttons[index].transform.parent.localScale.x < 1.01f)
             {
-                _yvelichinoLi.Add(pravelknopka);
-                Anime(pravelknopka).SetTrigger("ButtenClic");
+                _yvelichinoLi.Add(index);
+                Anime(index).SetTrigger("ButtenClic");
 
 
 

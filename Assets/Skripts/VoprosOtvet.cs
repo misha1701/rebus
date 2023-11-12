@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 
 [Serializable]
 public class VoprosOtvet
 {
     public string Vopros;
     public string[] Otvet;
-    public int PravOtvetIndex = -1;
+    public List<int> PravOtvetIndex = new List<int>();
 
     public VoprosOtvet()
     {

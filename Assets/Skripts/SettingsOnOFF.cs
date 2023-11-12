@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
@@ -90,11 +91,13 @@ public class SettingsOnOFF : MonoBehaviour
 
         Save.classVoprosOtvet.List[uiManager.GetNomerVopros()].Vopros = Vopros.text;
 
+        Save.classVoprosOtvet.List[uiManager.GetNomerVopros()].PravOtvetIndex = new List<int>();
+
         for (int i = 0; i < toggles.Length; i++)
         {
             if (toggles[i].isOn) // isOn смотрит включён ли  
             {
-                Save.classVoprosOtvet.List[uiManager.GetNomerVopros()].PravOtvetIndex = i;
+                Save.classVoprosOtvet.List[uiManager.GetNomerVopros()].PravOtvetIndex.Add(i);
             }
         }
 

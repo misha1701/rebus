@@ -1,64 +1,65 @@
 {
     "List": [
         {
-            "Vopros": "это первый вопрос попробуй дать на него верный ответ",
+            "Vopros": "",
             "Otvet": [
-                "прикол",
-                "нет верный этот",
-                "ответ 3",
-                "ответ 4"
+                "b,вуйауц",
+                "b,mnb",
+                "b,mnb",
+                "b,mnb"
             ],
-            "PravOtvetIndex": 2
+            "PravOtvetIndex": [
+                0
+            ]
         },
         {
             "Vopros": "",
             "Otvet": [
-                "sad",
-                "2",
+                "b,вуйауц",
+                "b,mnb",
                 "b,mnb",
                 "b,mnb"
             ],
-            "PravOtvetIndex": 2
+            "PravOtvetIndex": [
+                1
+            ]
         },
         {
             "Vopros": "",
             "Otvet": [
-                "sad",
-                "g3dsg",
+                "b,вуйауц",
+                "b,mnb",
                 "b,mnb",
                 "b,mnb"
             ],
-            "PravOtvetIndex": 0
+            "PravOtvetIndex": [
+                2
+            ]
         },
         {
             "Vopros": "",
             "Otvet": [
-                "sad",
-                "gdsg",
+                "b,вуйауц",
+                "b,mnb",
                 "b,mnb",
                 "b,mnb"
             ],
-            "PravOtvetIndex": 1
+            "PravOtvetIndex": [
+                3
+            ]
         },
         {
-            "Vopros": "",
+            "Vopros": "проверочный",
             "Otvet": [
-                "sad",
-                "gdsg",
+                "b,вуйауц",
+                "b,mnb",
                 "b,mnb",
                 "b,mnb"
             ],
-            "PravOtvetIndex": 2
-        },
-        {
-            "Vopros": "",
-            "Otvet": [
-                "sad",
-                "gdsg",
-                "b,mnb",
-                "b,mnb"
-            ],
-            "PravOtvetIndex": 3
+            "PravOtvetIndex": [
+                2,
+                3
+            ]
         }
     ]
 }
